@@ -1,5 +1,6 @@
 import React from 'react';
 import {FaCompressAlt, FaExpandAlt} from "react-icons/fa";
+import {marked} from "marked";
 
 const Previewer = (props) => {
 
@@ -17,6 +18,11 @@ const Previewer = (props) => {
         document.getElementById("compress-previewer").style.setProperty("display", "none")
     }
 
+    const getMarkdownText = () => {
+        let rawMarkup = marked.parse(props.previewOutput);
+        return { __html: rawMarkup };
+    }
+
 
     return (
         <div className="previewer-wrapper" id="previewer">
@@ -25,9 +31,7 @@ const Previewer = (props) => {
                 <FaExpandAlt onClick={expandPreviewer} id="expand-previewer"/>
                 <FaCompressAlt style={{display: "none"}} onClick={compressPreviewer} id="compress-previewer"/>
             </div>
-            <div className="previewer-output" id="previewer-output">
-                <p>{props.previewOutput}</p>
-            </div>
+            <div className="previewer-output" id="previewer-output" dangerouslySetInnerHTML={getMarkdownText()}></div>
         </div>
     );
 };

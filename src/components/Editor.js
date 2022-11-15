@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FaExpandAlt,FaCompressAlt} from "react-icons/fa"
+import {placeholder} from "../placeholder";
 
 const Editor = (props) => {
+
+    const [text, setText] = useState(placeholder)
 
     const expandEditor = () => {
         document.getElementById("previewer").style.setProperty("display", "none")
@@ -18,6 +21,7 @@ const Editor = (props) => {
     }
 
     const handleChange = (event) => {
+        setText(event.target.value)
         props.setPreviewOutput(event.target.value)
     }
 
@@ -28,7 +32,7 @@ const Editor = (props) => {
                 <FaExpandAlt onClick={expandEditor} id="expand-editor"/>
                 <FaCompressAlt style={{display: "none"}} onClick={compressEditor} id="compress-editor"/>
             </div>
-            <textarea style={{width: "100%"}} id="editor-textarea" onChange={handleChange}></textarea>
+            <textarea style={{width: "100%"}} id="editor-textarea" onChange={handleChange} spellCheck="false" value={text}></textarea>
         </div>
     );
 };
