@@ -1,6 +1,9 @@
 import React from 'react';
 import {FaCompressAlt, FaExpandAlt} from "react-icons/fa";
-import {marked} from "marked";
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeKatex from 'rehype-katex'
+
 
 const Previewer = (props) => {
 
@@ -18,12 +21,6 @@ const Previewer = (props) => {
         document.getElementById("compress-previewer").style.setProperty("display", "none")
     }
 
-    const getMarkdownText = () => {
-        let rawMarkup = marked.parse(props.previewOutput);
-        return { __html: rawMarkup };
-    }
-
-
     return (
         <div className="previewer-wrapper" id="previewer">
             <div className="toolbar">
@@ -31,7 +28,7 @@ const Previewer = (props) => {
                 <FaExpandAlt onClick={expandPreviewer} id="expand-previewer"/>
                 <FaCompressAlt style={{display: "none"}} onClick={compressPreviewer} id="compress-previewer"/>
             </div>
-            <div className="previewer-output" id="previewer-output" dangerouslySetInnerHTML={getMarkdownText()}></div>
+            <ReactMarkdown children={props.previewOutput} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeKatex]}  className="previewer-output" id="previewer-output"/>
         </div>
     );
 };
