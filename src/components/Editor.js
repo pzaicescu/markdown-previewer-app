@@ -1,7 +1,7 @@
 import React from 'react';
 import {FaExpandAlt,FaCompressAlt} from "react-icons/fa"
 
-const Editor = () => {
+const Editor = (props) => {
 
     const expandEditor = () => {
         document.getElementById("previewer").style.setProperty("display", "none")
@@ -17,6 +17,10 @@ const Editor = () => {
         document.getElementById("compress-editor").style.setProperty("display", "none")
     }
 
+    const handleChange = (event) => {
+        props.setPreviewOutput(event.target.value)
+    }
+
     return (
         <div className="editor-wrapper" id="editor">
             <div className="toolbar">
@@ -24,7 +28,7 @@ const Editor = () => {
                 <FaExpandAlt onClick={expandEditor} id="expand-editor"/>
                 <FaCompressAlt style={{display: "none"}} onClick={compressEditor} id="compress-editor"/>
             </div>
-            <textarea style={{width: "100%"}} id="editor-textarea"></textarea>
+            <textarea style={{width: "100%"}} id="editor-textarea" onChange={handleChange}></textarea>
         </div>
     );
 };
