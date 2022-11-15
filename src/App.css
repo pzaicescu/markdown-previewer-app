@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: block;
+    margin: 10px 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4aa3a3;
+    padding: 0.3rem;
+    border: 1px solid #1d2f2f;
+    box-shadow: 1px 1px 10px 2px #3a5f5f;
+    font-family: serif;
+    height: 35px;
+}
+
+.editor-wrapper {
+    width: 600px;
+    max-width: 600px;
+    margin: 1.125rem auto;
+}
+
+.editor-wrapper textarea, .previewer-wrapper .previewer-output {
+    background-color: #c0d8d8;
+    border: 1px solid #1d2f2f;
+    box-shadow: 1px 1px 10px 2px #3a5f5f;
+    border-top: none;
+    padding-left: 5px;
+    padding-top: 5px;
+    font-size: 0.875rem;
+    min-height: 200px;
+}
+.editor-wrapper textarea {
+    resize: vertical;
+    outline: none;
+    margin-bottom: -5px;
+}
+
+.previewer-wrapper {
+    width: 800px;
+    max-width: 800px;
+    margin: 1.125rem auto;
+}
